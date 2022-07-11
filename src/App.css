@@ -10,7 +10,7 @@ body {
   display: block;
 }
 
-input,
+input:not([type="radio"]),
 select {
   width: 100%;
 }
@@ -51,4 +51,9 @@ select {
 
 button {
   width: 100%;
+}
+
+.result {
+  padding: 4rem;
+  text-align: center;
 }

@@ -6,6 +6,7 @@ export default function App() {
   const [age, setAge] = React.useState<string | undefined>("");
   const [gender, setGender] = React.useState<string | undefined>("Male");
   const [color, setColor] = React.useState<string | undefined>("Red");
+  const [result, setResult] = React.useState<string>("");
 
   const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -25,18 +26,26 @@ export default function App() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(name, age, color);
+    setResult(
+      name +
+        " is " +
+        age +
+        " years old, " +
+        "and " +
+        (gender == "Male" ? "he" : "she") +
+        " likes " +
+        color +
+        "."
+    );
   };
 
-  // const handleInputChage = (event: React.FormEvent<HTMLFormElement>) => {
-  //   let { name, value } = e.target;
-  //   this.setState({
-  //     ...this.setState,
-  //     inputs: {
-  //       [name]: value,
-  //     },
-  //   });
-  // };
+  const handleClear = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setName("");
+    setGender("");
+    setAge("");
+    setColor("");
+    setResult("");
+  };
 
   return (
     <div className="form">
@@ -52,10 +61,16 @@ export default function App() {
         <button type="submit" className="btn-primary mb-16">
           Submit
         </button>
-        <button type="reset" className="btn-secondary mb-16">
+        <button
+          type="reset"
+          className="btn-secondary mb-16"
+          onClick={handleClear}
+        >
           Clear
         </button>
       </form>
+
+      <div className="result">{result}</div>
     </div>
   );
 }
@@ -85,8 +100,11 @@ const SelectGender = ({ value, onChange, name }: RadioType) => {
   return (
     <div className="mb-16">
       <label>{name}</label>
-      <input type="radio" value="Male" onChange={onChange} />
-      <input type="radio" value="Female" onChange={onChange} />
+      <br />
+      <input type="radio" value="Male" name="radio-btn" onChange={onChange} />
+      <label>Male</label>
+      <input type="radio" value="Female" name="radio-btn" onChange={onChange} />
+      <label>Female</label>
     </div>
   );
 };
