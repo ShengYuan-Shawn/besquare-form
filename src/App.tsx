@@ -121,7 +121,10 @@ const SelectColor = ({ value, onChange, name }: SelectType) => {
       <label>{name}</label>
       <select value={value} onChange={onChange}>
         <option value="red">Red</option>
+        <option value="pink">Pink</option>
         <option value="blue">Blue</option>
+        <option value="skyblue">Skyblue</option>
+        <option value="teal">Teal</option>
       </select>
     </div>
   );
